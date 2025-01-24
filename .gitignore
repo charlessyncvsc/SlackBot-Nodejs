@@ -1,0 +1,8 @@
+node_modules/*
+api/certs/*storage.json
+*/node_modules/*
+*error.log
+www/deploy/*
+# api/uploads/*
+site/
+.env
