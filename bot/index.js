@@ -1,6 +1,10 @@
 const { App } = require("@slack/bolt");
 const axios = require('axios');
 require("dotenv").config();
+
+function processBooking(message) {
+  // message is the full text input
+}
 // Initializes your app with credentials
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -15,10 +19,17 @@ const app = new App({
   console.log('Bolt app started!!');
 })();
 
-app.message("hey", async ({ command, say }) => {
-    try {
-      say("Hello Human!");
-    } catch (error) {
-        console.log("err",error);
-    }
+app.message(/^(hi|hello|hey).*/, async ({ context, say }) => {
+  // RegExp matches are inside of context.matches
+  processBooking(context.input)
+  const greeting = context.matches[0];
+  await say(`${greeting}, how are you? Would you like to make a booking?`);
 });
+
+app.message(/.*[Bb]+[Oo]+[Kk]+.*/, async ({ context, say }) => {
+  // RegExp matches are inside of context.matches
+  console.log(context);
+  const greeting = context.matches[0];
+  await say(`...processing your booking, please wait a moment.`);
+});
+
