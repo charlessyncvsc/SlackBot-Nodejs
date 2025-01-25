@@ -24,6 +24,17 @@
             "runOptions": {
                 "runOn": "folderOpen"
             }
+        },
+        {
+            "label": "start bot",
+            "type": "shell",
+            "command": "yarn && npx nodemon",
+            "options": {
+                "cwd": "${workspaceFolder}/bot"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
         }
         // },
         // {

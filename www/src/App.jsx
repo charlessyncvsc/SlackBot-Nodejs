@@ -1,24 +1,31 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import axios from "axios"
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [reply, setReply] = useState("")
-  const [inputText, setInputText] = useState("")
+  const [dialog, setDialog] = useState([]);
+  const [inputText, setInputText] = useState("");
+  const [messages, setMessages] = useState([]);
   function submitMessage(event) {
     event.preventDefault();
     console.log("submitMessage()");
-    setReply(inputText);
+    let message = {user: "test", message: inputText}
+    // setDialog([...dialog,message])
+    console.log("########## dialog", dialog)
     setInputText("");
     axios.get('/',{
       withCredentials: true,
       baseURL: "http://localhost:4001"
   }).then(response => {
       console.log(response)
-      setReply(response.data);
+      let reply = {user: "bot", message: response.data}
+      setDialog([...dialog, message,reply]);
+    }).catch(err => {
+      let reply = {user: "system", message: "error"}
+      setDialog([...dialog, message, reply]);
+      console.log(err);
     })
   }
   function inputChange(event) {
@@ -26,6 +33,10 @@ function App() {
     event.preventDefault();
     setInputText(event.target.value)
   }
+
+  useEffect(() => {
+    console.log("Debug", dialog);
+  },[dialog])
   return (
     <>
       <div>
@@ -37,7 +48,9 @@ function App() {
         </form>
       </div>
       <div>
-        <h3>{reply}</h3>
+        <ul>
+        {dialog && dialog.length>0 && dialog.slice(0).reverse().map(m => (<li style={{listStyleType: "none"}} key={m.id}>{m.user}: {m.message}</li>))}
+        </ul>
       </div>
     </>
   )
