@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.botMessage {
+  text-align: right;
+  background: color #999;
+}
+
+.userMessage {
+  text-align: left;
+  background-color: beige;
+}

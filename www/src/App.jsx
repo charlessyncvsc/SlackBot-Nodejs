@@ -49,7 +49,10 @@ function App() {
       </div>
       <div>
         <ul>
-        {dialog && dialog.length>0 && dialog.slice(0).reverse().map(m => (<li style={{listStyleType: "none"}} key={m.id}>{m.user}: {m.message}</li>))}
+        {dialog && dialog.length>0 && dialog.slice(0).reverse().map(m => (
+          <li className={m.user=="bot"? "botMessage": "userMessage"} style={{listStyleType: "none"}} key={m.id}>
+            {m.user}: {m.message}
+          </li>))}
         </ul>
       </div>
     </>
