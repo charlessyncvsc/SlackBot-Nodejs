@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/dialogflow": "^6.14.0",
     "@slack/bolt": "^4.2.0",
     "axios": "^1.7.9"
   },

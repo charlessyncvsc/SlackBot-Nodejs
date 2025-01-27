@@ -1,23 +1,20 @@
 // See https://containers.dev/implementors/json_reference/ for configuration reference
 {
-	"name": "Untitled Node.js project",
+	"name": "Chatbot Node.js project",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
+	"remoteUser": "node",
 	"forwardPorts": [
 		5173,
 		4001,
 		8097,
 		3000
 	],
-	"remoteUser": "node",
-  	"remoteEnv": {
+	"remoteEnv": {
 		"CLIENT_HOST": "localhost",
 		"CLIENT_PORT": "5173",
 		"API_PORT": "4001",
-		"GCS_BUCKET": "edu-next-demo-local",
-		"GCLOUD_PROJECT": "edu-next-demo",
-		"GCS_KEYFILE": "/workspaces/edu-next/api/gcloud.json",
 		"NODE_ENV" : "development"
 	}
 }
