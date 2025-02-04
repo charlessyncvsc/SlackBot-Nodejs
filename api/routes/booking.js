@@ -23,5 +23,17 @@ router.get('/greetings', (req,res) => {
      }
 });
 
+// I will get the input and return an output string as output
+router.post('/new', (req,res) => {
+    console.log("Book new appointment",req.body)
+    try {
+        const message = 
+        `${req.body.data.user} booked with ${req.body.data.booking.person} at ${req.body.data.booking.date_time}`
+        res.status(200).json({message})
+     } catch(error) {
+        console.log(error);
+        res.status(422).json(error);
+     }
+});
 
 module.exports = router;
