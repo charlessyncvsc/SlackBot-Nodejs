@@ -55,4 +55,5 @@ Please use the devcontainer to spin up if possible. tasks.json will initialize t
 
 ## Pre-requisites
 - Slack account. Please sign up for the api services and make sure you follow the process to create the equivalent application and retrieve the necessary keys, signing tokens.
-- Google dialogflow. You need a google account and access to google console and dialogflow to manage dialogflow fully. As well as the authentication, you will also need to setup the agent in dialogflow to handle the exchangese between the bot and the users..
+- Google dialogflow. You need a google account and access to google console and dialogflow to manage dialogflow fully. 
+- You will also need to setup the agent in dialogflow to handle the exchangese between the bot and the users. The configuration can be imported directly by uploading `bot/Seb.zip` file into dialogflow.
