@@ -67,6 +67,7 @@ async function processBooking(event, say){
       await say(data.responseText);
       
       // if the booking is complete then remove the session form the live sesion map otherwise add or update the current mapping.
+      // this is implemented to handle simultaneous booking conversations
       // set() is used for update and add.
       if(bookingCompleteFlags.includes(data.responseText) ) {
         console.log("booking information filled");
@@ -157,8 +158,6 @@ async function executeQueries( sessionClient,sessionId, query) {
 // Given the intent returned from dialogflow, return the parameters extracted 
 // by dialogflow.
 
-//responses[0].queryResult.parameters.fields['person'].structValue.fields['name']['stringValue']
-//responses[0].queryResult.parameters.fields['date_time'].structValue.fields['date_time']['stringValue']
 function extractValueFromIntent(intent, name) {
   let structValueFieldName = name;
   if (name == 'person') {
@@ -250,5 +249,5 @@ async function cleanUpSessions() {
   }
 }
 
-// Each conversation only last for 10 minutes
+// Each conversation only last for 10 minutes, otherwise it'd be cleaned up.
 setInterval(cleanUpSessions, tenMinutes);

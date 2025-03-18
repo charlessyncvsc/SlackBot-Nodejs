@@ -1,3 +1,6 @@
+// a simple backend api for the demonstration.
+// routes are under the routes/ folder
+
 const express = require('express');
 const cors = require('cors');
 

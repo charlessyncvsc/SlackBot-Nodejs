@@ -13,7 +13,7 @@ router.post('/register', (req,res) => {
     }
 }) 
 
-// Not an event
+// Return the greeting
 router.get('/greetings', (req,res) => {
     console.log("called booking/greeetings")
     try {
@@ -23,7 +23,8 @@ router.get('/greetings', (req,res) => {
      }
 });
 
-// I will get the input and return an output string as output
+// I will provide the input in the requet body 
+// from dialogflow and return an output string
 router.post('/new', (req,res) => {
     console.log("Book new appointment",req.body)
     try {

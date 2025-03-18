@@ -1,6 +1,4 @@
 import { useState,useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import axios from "axios"
 
@@ -12,6 +10,8 @@ function App() {
   const [dateTime,setDateTime] = useState("");
 
   const [messages, setMessages] = useState([]);
+
+
   function submitMessage(event) {
     event.preventDefault();
     console.log("submitMessage()");
@@ -33,27 +33,28 @@ function App() {
     })
   }
 
+  // submit via the webpage the booking information to the api
+  // to demonstrate that the same api can be shared across the
+  // web and chat frontends.
   function submitBooking(event) {
     event.preventDefault();
-    console.log("submitBooking()");
     let message = {user: "test", message: "submitting booking"}
     console.log("########## dialog", dialog)
     const booking = {user: "test", booking: {person: artist, date_time: dateTime} }
+
     axios.post('/booking/new',{data:booking},{
       withCredentials: true,
       baseURL: "http://localhost:4001"
-  }).then(response => {
-    let reply = {user: "bot", message: response.data.message}
-    console.log("message", message)
-    console.log("reply", reply)
-      setDialog1([...dialog1, message,reply]);
+    }).then(response => {
+          let reply = {user: "bot", message: response.data.message}
+          setDialog1([...dialog1, message,reply]);
     }).catch(err => {
-      let reply = {user: "system", message: "error"}
-      // setDialog1([...dialog1, message, reply]);
-      console.log(err);
+          let reply = {user: "system", message: "error"}
+          console.log(err);
     })
   }
 
+  // utility functions for booking fields
   function inputChange(event) {
     console.log("inputChange()",event.target.value)
     event.preventDefault();
@@ -74,9 +75,6 @@ function App() {
   }
 
 
-  useEffect(() => {
-    console.log("Debug", dialog);
-  },[dialog])
   return (
     <>
       <h1>Play site</h1>
